@@ -1,4 +1,4 @@
-name: Deploy static site to GitHub Pages
+name: Deploy static content to Pages
 
 on:
   push:
@@ -17,10 +17,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Upload Files
-        uses: actions/upload-pages-artifact@v2
+      - name: Upload static files (prepare artifact)
+        # use the recommended v4 so it doesn't depend on deprecated upload-artifact v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
